@@ -266,9 +266,9 @@ function App() {
                 Hi, I’m Soniya
                 <span className="heading-period">.</span>
                 <br />
-                <span className="heading-soft">I build things</span>
+                <span className="heading-soft">Turning complex problems</span>
                 <br />
-                that make sense.
+                into elegant solutions.
               </motion.h1>
               <div className="role-line" aria-live="polite">
                 <Code2 size={17} />
@@ -393,7 +393,7 @@ function App() {
                 </div>
                 <div className="journey-item">
                   <span className="journey-node node-current" />
-                  <div><time>2026 — PRESENT</time><strong>Software Developer Intern</strong><span>Quantify · Mobile & Blockchain</span></div>
+                  <div><time>2026 — PRESENT</time><strong>Software Developer Intern</strong><span>QuantekSolution · Mobile & Blockchain</span></div>
                 </div>
                 <div className="journey-footer"><span>Always learning, always building</span><span>↗</span></div>
               </div>
@@ -624,25 +624,45 @@ function AnimatedStat({
   label: string
   delay: number
 }) {
-  const numberRef = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(numberRef, { once: true, margin: '-50px' })
+  const containerRef = useRef<HTMLDivElement>(null)
+  const isInView = useInView(containerRef, { once: true, margin: '0px 0px -20px 0px' })
   const [count, setCount] = useState(() =>
-    window.matchMedia('(prefers-reduced-motion: reduce)').matches ? value : '0',
+    typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches ? value : '0',
   )
 
   useEffect(() => {
-    if (!isInView) return
-    const target = Number(value)
-    const decimals = value.includes('.') ? 1 : 0
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Fallback: ensure number is never stuck at 0 on mobile browsers
+    const timer = window.setTimeout(() => {
+      setCount(value)
+    }, 1200)
+    return () => window.clearTimeout(timer)
+  }, [value])
 
+  useEffect(() => {
+    if (!isInView) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setCount(value)
+      return
+    }
+
+    const target = Number(value)
+    if (Number.isNaN(target)) {
+      setCount(value)
+      return
+    }
+
+    const decimals = value.includes('.') ? 1 : 0
     const startedAt = performance.now()
     let frame = 0
     function animate(now: number) {
       const progress = Math.min((now - startedAt) / 850, 1)
       const eased = 1 - Math.pow(1 - progress, 3)
       setCount((target * eased).toFixed(decimals).padStart(value.length, '0'))
-      if (progress < 1) frame = requestAnimationFrame(animate)
+      if (progress < 1) {
+        frame = requestAnimationFrame(animate)
+      } else {
+        setCount(value)
+      }
     }
     frame = requestAnimationFrame(animate)
     return () => cancelAnimationFrame(frame)
@@ -650,13 +670,14 @@ function AnimatedStat({
 
   return (
     <motion.div
+      ref={containerRef}
       className="stat-item"
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '0px 0px -20px 0px' }}
       transition={{ delay, duration: 0.4 }}
     >
-      <strong><span ref={numberRef} className="stat-number">{count}</span><span>{suffix}</span></strong>
+      <strong><span className="stat-number">{count}</span><span>{suffix}</span></strong>
       <span>{label}</span>
     </motion.div>
   )

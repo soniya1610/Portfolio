@@ -1,5 +1,9 @@
 # Soniya Meena — Developer Portfolio
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-portfolio--soniya.vercel.app-2563eb?style=for-the-badge&logo=vercel&logoColor=white)](https://portfolio-soniya.vercel.app/)
+
+> 🌐 **Live Portfolio:** [https://portfolio-soniya.vercel.app/](https://portfolio-soniya.vercel.app/)
+
 A modern, responsive developer portfolio showcasing full-stack engineering, mobile development, Web3/blockchain applications, and open-source contributions. Built with **React 19**, **TypeScript**, **Vite**, **Tailwind CSS**, and **Framer Motion**.
 
 ---

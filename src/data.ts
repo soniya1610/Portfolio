@@ -9,10 +9,10 @@ export const profile = {
 }
 
 export const stats = [
-  { value: '8.0', suffix: '/10', label: 'CGPA' },
+  { value: '8', suffix: '/10', label: 'CGPA' },
   { value: '500', suffix: '+', label: 'DSA problems solved' },
   { value: '20', suffix: '+', label: 'Merged open-source PRs' },
-  { value: '03', suffix: '', label: 'Featured projects' },
+  { value: '05', suffix: '', label: 'Featured projects' },
 ]
 
 export const experience = [
