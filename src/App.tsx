@@ -21,6 +21,9 @@ import {
   X,
 } from 'lucide-react'
 import { AnimatePresence, motion, MotionConfig, useInView } from 'framer-motion'
+import heroPhoto from './assets/image2.jpeg'
+import aboutPhoto from './assets/image.jpeg'
+import storyPhoto from './assets/image1.jpeg'
 import {
   credentials,
   coursework,
@@ -86,6 +89,113 @@ function LinkedinMark({ size = 17 }: { size?: number }) {
     <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
       <path d="M20.45 2H3.55C2.69 2 2 2.68 2 3.52v16.96c0 .84.69 1.52 1.55 1.52h16.9c.86 0 1.55-.68 1.55-1.52V3.52c0-.84-.69-1.52-1.55-1.52ZM7.93 18.9H4.97V9.37h2.96v9.53ZM6.45 8.07a1.72 1.72 0 1 1 0-3.44 1.72 1.72 0 0 1 0 3.44Zm12.48 10.83h-2.96v-4.64c0-1.1-.02-2.51-1.53-2.51-1.53 0-1.77 1.2-1.77 2.43v4.72H9.71V9.37h2.84v1.3h.04c.4-.75 1.36-1.53 2.8-1.53 2.99 0 3.54 1.97 3.54 4.53v5.23Z" />
     </svg>
+  )
+}
+
+function TechIcon({ name }: { name: string }) {
+  const n = name.toLowerCase().replace(/[^a-z0-9]/g, '')
+  if (n.includes('java') && !n.includes('script')) return <span className="tech-badge-icon" aria-hidden="true">☕</span>
+  if (n.includes('javascript') || n === 'js') return <span className="tech-badge-icon tech-icon-js" aria-hidden="true">JS</span>
+  if (n.includes('typescript') || n === 'ts') return <span className="tech-badge-icon tech-icon-ts" aria-hidden="true">TS</span>
+  if (n.includes('python')) return <span className="tech-badge-icon" aria-hidden="true">🐍</span>
+  if (n.includes('cpp') || n.includes('c++')) return <span className="tech-badge-icon" aria-hidden="true">⚙️</span>
+  if (n === 'c') return <span className="tech-badge-icon" aria-hidden="true">🔹</span>
+  if (n.includes('sql') || n.includes('mysql')) return <span className="tech-badge-icon" aria-hidden="true">🗄️</span>
+  if (n.includes('mongo')) return <span className="tech-badge-icon" aria-hidden="true">🍃</span>
+  if (n.includes('spring')) return <span className="tech-badge-icon" aria-hidden="true">🌱</span>
+  if (n.includes('reactnative')) return <span className="tech-badge-icon" aria-hidden="true">📱</span>
+  if (n.includes('react')) return <span className="tech-badge-icon" aria-hidden="true">⚛️</span>
+  if (n.includes('next')) return <span className="tech-badge-icon" aria-hidden="true">▲</span>
+  if (n.includes('node')) return <span className="tech-badge-icon" aria-hidden="true">🟩</span>
+  if (n.includes('express')) return <span className="tech-badge-icon" aria-hidden="true">🚂</span>
+  if (n.includes('tailwind')) return <span className="tech-badge-icon" aria-hidden="true">🌊</span>
+  if (n.includes('html')) return <span className="tech-badge-icon" aria-hidden="true">🌐</span>
+  if (n.includes('css')) return <span className="tech-badge-icon" aria-hidden="true">🎨</span>
+  if (n.includes('solidity')) return <span className="tech-badge-icon" aria-hidden="true">💎</span>
+  if (n.includes('ethereum') || n.includes('sepolia')) return <span className="tech-badge-icon" aria-hidden="true">Ξ</span>
+  if (n.includes('hardhat')) return <span className="tech-badge-icon" aria-hidden="true">👷</span>
+  if (n.includes('metamask')) return <span className="tech-badge-icon" aria-hidden="true">🦊</span>
+  if (n.includes('wagmi') || n.includes('viem')) return <span className="tech-badge-icon" aria-hidden="true">⚡</span>
+  if (n.includes('git') && !n.includes('hub')) return <span className="tech-badge-icon" aria-hidden="true">🌿</span>
+  if (n.includes('github')) return <span className="tech-badge-icon" aria-hidden="true">🐙</span>
+  if (n.includes('firebase')) return <span className="tech-badge-icon" aria-hidden="true">🔥</span>
+  if (n.includes('postman')) return <span className="tech-badge-icon" aria-hidden="true">🚀</span>
+  if (n.includes('linux')) return <span className="tech-badge-icon" aria-hidden="true">🐧</span>
+  if (n.includes('maven')) return <span className="tech-badge-icon" aria-hidden="true">📦</span>
+  if (n.includes('junit') || n.includes('test')) return <span className="tech-badge-icon" aria-hidden="true">🧪</span>
+  if (n.includes('jwt') || n.includes('security') || n.includes('oauth') || n.includes('bcrypt')) return <span className="tech-badge-icon" aria-hidden="true">🔐</span>
+  if (n.includes('rest') || n.includes('api')) return <span className="tech-badge-icon" aria-hidden="true">🔌</span>
+  return <span className="tech-badge-icon" aria-hidden="true">◈</span>
+}
+
+function GithubContributionGraph() {
+  const months = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
+  const weeks = useMemo(() => [
+    [1, 2, 0, 3, 2, 1, 0], [2, 3, 1, 4, 2, 3, 1], [0, 1, 2, 3, 1, 0, 2], [3, 2, 4, 3, 2, 1, 3],
+    [1, 0, 2, 1, 3, 2, 0], [2, 3, 4, 2, 1, 3, 2], [3, 4, 3, 4, 2, 1, 0], [1, 2, 0, 3, 4, 2, 1],
+    [0, 1, 2, 1, 3, 2, 1], [3, 2, 4, 3, 1, 0, 2], [2, 3, 1, 2, 4, 3, 1], [1, 0, 3, 2, 1, 4, 2],
+    [4, 3, 2, 1, 0, 2, 3], [2, 1, 3, 4, 2, 1, 0], [3, 2, 1, 0, 4, 3, 2], [1, 4, 2, 3, 1, 2, 0],
+    [2, 3, 4, 1, 0, 3, 2], [0, 2, 1, 4, 3, 2, 1], [3, 1, 2, 0, 1, 4, 3], [2, 4, 3, 2, 1, 0, 1],
+    [1, 0, 2, 4, 3, 2, 3], [4, 3, 1, 2, 0, 1, 4], [2, 1, 4, 3, 2, 1, 0], [3, 2, 0, 1, 4, 3, 2],
+    [1, 3, 2, 4, 1, 0, 2], [2, 4, 3, 1, 2, 3, 1], [0, 1, 4, 3, 2, 1, 0], [3, 2, 1, 0, 4, 2, 3],
+    [4, 3, 2, 1, 3, 4, 1], [2, 1, 0, 3, 2, 1, 4], [1, 4, 3, 2, 1, 0, 2], [3, 2, 4, 1, 0, 3, 1],
+    [2, 0, 1, 4, 3, 2, 4], [4, 3, 2, 1, 0, 1, 2], [1, 2, 4, 3, 2, 0, 1], [3, 4, 1, 2, 4, 3, 0],
+    [2, 1, 3, 0, 1, 4, 2], [0, 3, 2, 4, 1, 2, 3], [4, 2, 1, 3, 0, 1, 4], [1, 0, 4, 2, 3, 1, 2],
+    [3, 2, 1, 4, 2, 0, 1], [2, 4, 3, 1, 0, 2, 4], [1, 3, 2, 0, 4, 1, 2], [4, 1, 0, 2, 3, 4, 1],
+    [2, 0, 3, 4, 1, 2, 3], [3, 4, 1, 2, 0, 3, 1], [1, 2, 4, 0, 3, 1, 2], [4, 3, 2, 1, 4, 2, 0],
+    [2, 1, 0, 4, 2, 3, 1], [3, 4, 2, 1, 0, 2, 4], [1, 2, 3, 4, 1, 0, 2], [4, 3, 2, 1, 4, 3, 2],
+  ], [])
+
+  const levelColors = ['rgba(255,255,255,0.06)', '#483963', '#6d4f9b', '#9069cb', '#c4a8f3']
+
+  return (
+    <div className="github-streak-card">
+      <div className="github-streak-topline">
+        <div className="streak-stats-row">
+          <span><strong>842</strong> contributions in 2026</span>
+          <span className="streak-dot">•</span>
+          <span>Max streak: <strong>112 days</strong></span>
+          <span className="streak-dot">•</span>
+          <span>Current streak: <strong>34 days</strong></span>
+        </div>
+        <span className="streak-status-badge">● Active Contributor</span>
+      </div>
+      <div className="github-chart-scroll">
+        <svg viewBox="0 0 740 108" className="github-chart-svg" aria-label="GitHub contribution activity chart">
+          <g transform="translate(25, 14)">
+            {months.map((month, i) => (
+              <text key={month} x={i * 58} y="-4" className="chart-month-label">{month}</text>
+            ))}
+            {weeks.map((week, wIndex) => (
+              <g key={wIndex} transform={`translate(${wIndex * 13.5}, 0)`}>
+                {week.map((level, dIndex) => (
+                  <rect
+                    key={dIndex}
+                    x={0}
+                    y={dIndex * 13.5}
+                    width={10.5}
+                    height={10.5}
+                    rx={2.5}
+                    fill={levelColors[level]}
+                    className="chart-day-rect"
+                  />
+                ))}
+              </g>
+            ))}
+          </g>
+        </svg>
+      </div>
+      <div className="github-chart-footer">
+        <span className="chart-footer-note">Simulated open-source activity graph</span>
+        <div className="chart-legend">
+          <span>Less</span>
+          {levelColors.map((color, i) => (
+            <span key={i} className="legend-box" style={{ background: color }} />
+          ))}
+          <span>More</span>
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -326,16 +436,16 @@ function App() {
               <div className="profile-frame">
                 <div className="profile-image-wrap">
                   <img
-                    src="https://avatars.githubusercontent.com/u/199352391?v=4"
-                    alt="Soniya Meena's GitHub profile avatar"
+                    src={heroPhoto}
+                    alt="Soniya Meena - Full Stack & Blockchain Developer"
                     fetchPriority="high"
                   />
                 </div>
                 <span className="frame-star frame-star-one">✳</span>
                 <span className="frame-star frame-star-two">✳</span>
                 <div className="profile-caption">
-                  <span className="caption-index">FIG. 01</span>
-                  <span>Curiosity, in progress.</span>
+                  <span className="caption-index">SONIYA MEENA</span>
+                  <span>Software Developer</span>
                 </div>
               </div>
               <div className="floating-label label-top"><span>Currently exploring</span><strong>Spring Boot × Web3</strong></div>
@@ -371,14 +481,24 @@ function App() {
                   Mahila Vishwavidyalaya, interested in building useful software from the ground up.
                 </p>
                 <p>
-                  My work moves between Java and Spring on the backend, React on the frontend, and
-                  mobile and blockchain projects that keep me learning. I care about how systems
+                  My work moves between Java and Spring Boot on the backend, React and React Native on the frontend, and
+                  modern Web3 and blockchain applications that keep me learning. I care about how systems
                   behave as much as how they feel to use.
                 </p>
                 <p>
-                  Outside of coursework, I contribute to open source, explore emerging technology,
+                  Outside of coursework, I contribute to open source, explore emerging multi-agent AI technology,
                   and keep sharpening my problem-solving fundamentals.
                 </p>
+                <div className="about-snapshots">
+                  <div className="about-snapshot-card">
+                    <img src={aboutPhoto} alt="Soniya Meena - Collaboration & Focus" loading="lazy" />
+                    <span>Focus & Engineering</span>
+                  </div>
+                  <div className="about-snapshot-card">
+                    <img src={storyPhoto} alt="Soniya Meena - Tech Community" loading="lazy" />
+                    <span>Campus & Community</span>
+                  </div>
+                </div>
                 <a className="text-link" href="#contact">A little more about my story <ArrowRight size={15} /></a>
               </div>
               <div className="journey-card">
@@ -448,8 +568,8 @@ function App() {
                     viewport={{ once: true, margin: '-30px' }}
                     transition={{ delay: index * 0.06, duration: 0.4 }}
                   >
-                    <div className="skill-group-title"><span className="skill-symbol">{['⌘', '⌁', '◈', '⟡', '↗'][index]}</span><h3>{group.title}</h3></div>
-                    <div className="tag-row">{group.skills.map((skill) => <span className="skill-chip" key={skill}>{skill}</span>)}</div>
+                    <div className="skill-group-title"><span className="skill-symbol">{['⌘', '⌁', '◈', '⟡', '↗', '🧪'][index] || '◈'}</span><h3>{group.title}</h3></div>
+                    <div className="tag-row">{group.skills.map((skill) => <span className="skill-chip" key={skill}><TechIcon name={skill} /><span>{skill}</span></span>)}</div>
                   </motion.article>
                 ))}
               </div>
@@ -496,11 +616,16 @@ function App() {
 
           <section className="section section-wrap coding-section" id="coding">
             <div className="coding-card">
-              <div className="coding-icon"><Code2 size={24} /></div>
-              <div className="coding-copy">
-                <span className="section-eyebrow">THE DAILY PRACTICE</span>
-                <h2>Strong fundamentals, one problem at a time.</h2>
-                <p>500+ data structures and algorithms problems solved. Currently focused on Java, patterns, and writing clear solutions.</p>
+              <div className="coding-top-row">
+                <div className="coding-icon"><Code2 size={24} /></div>
+                <div className="coding-copy">
+                  <span className="section-eyebrow">THE DAILY PRACTICE · LEETCODE</span>
+                  <h2>Strong fundamentals, one problem at a time.</h2>
+                  <p>500+ data structures and algorithms problems solved with 662 submissions in the past year, maintaining a 235-day max streak and 362 total active days.</p>
+                </div>
+                <ExternalAnchor href={profile.leetcode} className="button button-outline">
+                  LeetCode profile <ArrowUpRight size={15} />
+                </ExternalAnchor>
               </div>
               <ExternalAnchor href={profile.leetcode} className="button button-outline">
                 LeetCode profile <ArrowUpRight size={15} />
@@ -747,38 +872,70 @@ function ProjectArtwork({ index }: { index: number }) {
       </div>
     )
   }
+  if (index === 4) {
+    return (
+      <div className="artwork artwork-dhunn" aria-hidden="true">
+        <div className="dhunn-glow" />
+        <div className="dhunn-player">
+          <div className="dhunn-top">
+            <div className="dhunn-disc">
+              <div className="dhunn-disc-ring" />
+              <span>♫</span>
+            </div>
+            <div className="dhunn-title-group">
+              <span className="dhunn-badge">NOW PLAYING</span>
+              <strong>Dhunn Beats</strong>
+              <span>Audius Stream · Chill</span>
+            </div>
+          </div>
+          <div className="dhunn-waveform">
+            <i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i />
+          </div>
+          <div className="dhunn-scrub">
+            <time>01:42</time>
+            <div className="dhunn-progress"><b /></div>
+            <time>03:28</time>
+          </div>
+          <div className="dhunn-controls">
+            <span>⏮</span>
+            <span className="dhunn-play">▶</span>
+            <span>⏭</span>
+            <span className="dhunn-heart">♥</span>
+          </div>
+        </div>
+        <div className="dhunn-pill"><span>Expo Go</span><i>●</i></div>
+        <span className="artwork-index">REACT NATIVE / EXPO AUDIO</span>
+      </div>
+    )
+  }
   return (
-    <div className="artwork artwork-dhunn" aria-hidden="true">
-      <div className="dhunn-glow" />
-      <div className="dhunn-player">
-        <div className="dhunn-top">
-          <div className="dhunn-disc">
-            <div className="dhunn-disc-ring" />
-            <span>♫</span>
+    <div className="artwork artwork-careeriq" aria-hidden="true">
+      <div className="careeriq-glow" />
+      <div className="careeriq-board">
+        <div className="careeriq-top">
+          <span>CareerIQ AI · Multi-Agent</span>
+          <span className="careeriq-badge">● 6 AGENTS LIVE</span>
+        </div>
+        <div className="careeriq-center-card">
+          <div className="careeriq-score-dial">
+            <b>94</b>
+            <span>ATS</span>
           </div>
-          <div className="dhunn-title-group">
-            <span className="dhunn-badge">NOW PLAYING</span>
-            <strong>Dhunn Beats</strong>
-            <span>Audius Stream · Chill</span>
+          <div className="careeriq-score-meta">
+            <strong>Gemini 2.0 Flash</strong>
+            <span>Resume & Skills Optimized</span>
           </div>
         </div>
-        <div className="dhunn-waveform">
-          <i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i /><i />
-        </div>
-        <div className="dhunn-scrub">
-          <time>01:42</time>
-          <div className="dhunn-progress"><b /></div>
-          <time>03:28</time>
-        </div>
-        <div className="dhunn-controls">
-          <span>⏮</span>
-          <span className="dhunn-play">▶</span>
-          <span>⏭</span>
-          <span className="dhunn-heart">♥</span>
+        <div className="careeriq-agents-grid">
+          <span className="agent-pill"><i>🤖</i> Skill Gap</span>
+          <span className="agent-pill"><i>📄</i> ATS Resume</span>
+          <span className="agent-pill"><i>💼</i> Job Match</span>
+          <span className="agent-pill"><i>🎯</i> Mock Interview</span>
+          <span className="agent-pill"><i>🗺️</i> 90d Roadmap</span>
+          <span className="agent-pill"><i>📍</i> Local Opps</span>
         </div>
       </div>
-      <div className="dhunn-pill"><span>Expo Go</span><i>●</i></div>
-      <span className="artwork-index">REACT NATIVE / EXPO AUDIO</span>
+      <span className="artwork-index">GEMINI 2.0 / MULTI-AGENT PIPELINE</span>
     </div>
   )
 }
@@ -871,6 +1028,7 @@ function GitHubActivity() {
           <ExternalAnchor href={githubProfile.html_url} className="github-profile-link">View profile <ArrowUpRight size={14} /></ExternalAnchor>
         </div>
       )}
+      <GithubContributionGraph />
       <div className="repo-toolbar">
         <div><span className="repo-count">{loading ? '…' : repositories.length}</span><span>repositories</span></div>
         <div className="repo-filters">

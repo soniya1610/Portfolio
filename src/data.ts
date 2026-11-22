@@ -12,7 +12,7 @@ export const stats = [
   { value: '8', suffix: '/10', label: 'CGPA' },
   { value: '500', suffix: '+', label: 'DSA problems solved' },
   { value: '20', suffix: '+', label: 'Merged open-source PRs' },
-  { value: '05', suffix: '', label: 'Featured projects' },
+  { value: '06', suffix: '', label: 'Featured projects' },
 ]
 
 export const experience = [
@@ -133,6 +133,18 @@ export const projects = [
     demo: 'https://expo.dev/artifacts/eas/0g_AiSl2i6oBMnEJ6NgbSHPptTmeQ6Ij_Av_fEVKLs8.apk',
     mark: '05',
     accent: 'plum',
+  },
+  {
+    name: 'CareerIQ AI',
+    category: 'Full-stack · Multi-Agent AI',
+    description:
+      'A full-stack employment assistance platform helping job seekers with skill analysis, ATS resume building, and interview prep using six collaborative AI agents.',
+    details:
+      'Built with React, Vite, Node.js, Express, and MongoDB Atlas. CareerIQ AI coordinates six specialized AI agents powered by the Google Gemini 2.0 Flash API — analyzing skill gaps, optimizing ATS resumes, conducting mock interviews with real-time feedback, and generating customized 90-day career roadmaps.',
+    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'Gemini AI', 'Tailwind CSS'],
+    url: 'https://github.com/soniya1610/Syntax-Error',
+    mark: '06',
+    accent: 'blue',
   },
 ]
 

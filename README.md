@@ -10,7 +10,7 @@ A modern, responsive developer portfolio showcasing full-stack engineering, mobi
 
 ## ✨ Features
 
-- **5 Featured Projects**: Detailed showcase spanning Full-Stack AI, Civic Tech, AI Commerce, Web3/Blockchain, and Cross-Platform Mobile applications.
+- **6 Featured Projects**: Detailed showcase spanning Full-Stack AI, Civic Tech, AI Commerce, Web3/Blockchain, Cross-Platform Mobile, and Multi-Agent AI applications.
 - **Custom CSS Artworks**: Handcrafted, interactive UI mockups for each project (Logistics tracking board, Civic geo-map, Agent workflow orbits, Ethereum dApp tip board, and an Expo audio music player).
 - **Live GitHub Activity Integration**: Fetches real-time public repositories and profile stats directly from the GitHub REST API with language filtering, star sorting, and pagination.
 - **Theme Switching**: Dark and light mode toggle with smooth CSS transitions and local storage persistence.
@@ -29,6 +29,7 @@ A modern, responsive developer portfolio showcasing full-stack engineering, mobi
 | **03** | [**AgentCart**](https://github.com/soniya1610/AgentCart) | Backend · Commerce | Java 17, Spring Boot, Spring Security, JWT, MySQL, Razorpay | AI-ready commerce platform exploring bounded, explainable shopping workflows, approvals, and Razorpay payments. |
 | **04** | [**TipJar**](https://github.com/QuantekSolutions/soniya-intern-app/tree/main/tipjar) | Web3 · Blockchain | Solidity, Hardhat, Ethereum Sepolia, Next.js, Wagmi, Viem | Decentralized tipping dApp with memo messages and OpenZeppelin ERC-20 QuantekToken (QTK), verified on Sepolia Etherscan. |
 | **05** | [**Dhunn**](https://github.com/soniya1610/dhunn) | Mobile · React Native | React Native, Expo Go, TypeScript, Firebase, Expo Router, Audius API | Modern cross-platform music streaming & player app with Audius API integration, Expo Audio controls, and EAS Build APK. |
+| **06** | [**CareerIQ AI**](https://github.com/soniya1610/Syntax-Error) | Full-stack · Multi-Agent AI | React, Node.js, Express, MongoDB, Gemini AI, Tailwind CSS | Multi-agent employment platform with skill gap analysis, ATS resume scoring, mock interviews, and 90-day roadmaps. |
 
 ---
 
