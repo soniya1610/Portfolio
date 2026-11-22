@@ -94,107 +94,132 @@ function LinkedinMark({ size = 17 }: { size?: number }) {
 
 function TechIcon({ name }: { name: string }) {
   const n = name.toLowerCase().replace(/[^a-z0-9]/g, '')
-  if (n.includes('java') && !n.includes('script')) return <span className="tech-badge-icon" aria-hidden="true">☕</span>
-  if (n.includes('javascript') || n === 'js') return <span className="tech-badge-icon tech-icon-js" aria-hidden="true">JS</span>
-  if (n.includes('typescript') || n === 'ts') return <span className="tech-badge-icon tech-icon-ts" aria-hidden="true">TS</span>
-  if (n.includes('python')) return <span className="tech-badge-icon" aria-hidden="true">🐍</span>
-  if (n.includes('cpp') || n.includes('c++')) return <span className="tech-badge-icon" aria-hidden="true">⚙️</span>
-  if (n === 'c') return <span className="tech-badge-icon" aria-hidden="true">🔹</span>
-  if (n.includes('sql') || n.includes('mysql')) return <span className="tech-badge-icon" aria-hidden="true">🗄️</span>
-  if (n.includes('mongo')) return <span className="tech-badge-icon" aria-hidden="true">🍃</span>
-  if (n.includes('spring')) return <span className="tech-badge-icon" aria-hidden="true">🌱</span>
-  if (n.includes('reactnative')) return <span className="tech-badge-icon" aria-hidden="true">📱</span>
-  if (n.includes('react')) return <span className="tech-badge-icon" aria-hidden="true">⚛️</span>
-  if (n.includes('next')) return <span className="tech-badge-icon" aria-hidden="true">▲</span>
-  if (n.includes('node')) return <span className="tech-badge-icon" aria-hidden="true">🟩</span>
-  if (n.includes('express')) return <span className="tech-badge-icon" aria-hidden="true">🚂</span>
-  if (n.includes('tailwind')) return <span className="tech-badge-icon" aria-hidden="true">🌊</span>
-  if (n.includes('html')) return <span className="tech-badge-icon" aria-hidden="true">🌐</span>
-  if (n.includes('css')) return <span className="tech-badge-icon" aria-hidden="true">🎨</span>
-  if (n.includes('solidity')) return <span className="tech-badge-icon" aria-hidden="true">💎</span>
-  if (n.includes('ethereum') || n.includes('sepolia')) return <span className="tech-badge-icon" aria-hidden="true">Ξ</span>
-  if (n.includes('hardhat')) return <span className="tech-badge-icon" aria-hidden="true">👷</span>
-  if (n.includes('metamask')) return <span className="tech-badge-icon" aria-hidden="true">🦊</span>
-  if (n.includes('wagmi') || n.includes('viem')) return <span className="tech-badge-icon" aria-hidden="true">⚡</span>
-  if (n.includes('git') && !n.includes('hub')) return <span className="tech-badge-icon" aria-hidden="true">🌿</span>
-  if (n.includes('github')) return <span className="tech-badge-icon" aria-hidden="true">🐙</span>
-  if (n.includes('firebase')) return <span className="tech-badge-icon" aria-hidden="true">🔥</span>
-  if (n.includes('postman')) return <span className="tech-badge-icon" aria-hidden="true">🚀</span>
-  if (n.includes('linux')) return <span className="tech-badge-icon" aria-hidden="true">🐧</span>
-  if (n.includes('maven')) return <span className="tech-badge-icon" aria-hidden="true">📦</span>
-  if (n.includes('junit') || n.includes('test')) return <span className="tech-badge-icon" aria-hidden="true">🧪</span>
-  if (n.includes('jwt') || n.includes('security') || n.includes('oauth') || n.includes('bcrypt')) return <span className="tech-badge-icon" aria-hidden="true">🔐</span>
-  if (n.includes('rest') || n.includes('api')) return <span className="tech-badge-icon" aria-hidden="true">🔌</span>
-  return <span className="tech-badge-icon" aria-hidden="true">◈</span>
+
+  // Returns an <img> tag with the official Devicon/Shields CDN SVG logo
+  const img = (src: string, alt?: string) => (
+    <img className="tech-badge-icon-img" src={src} alt={alt || name} width="16" height="16" loading="lazy" />
+  )
+
+  // Languages
+  if (n.includes('java') && !n.includes('script'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg')
+  if (n.includes('javascript') || n === 'js')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg')
+  if (n.includes('typescript') || n === 'ts')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg')
+  if (n.includes('python'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg')
+  if (n.includes('cplusplus') || n.includes('cpp') || name === 'C++')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg')
+  if (n === 'c' || name === 'C')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg')
+  if (n.includes('mysql') || n === 'sql')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg')
+  if (n.includes('mongodb') || n.includes('mongo'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg')
+
+  // Spring ecosystem
+  if (n === 'springboot' || name === 'Spring Boot')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg')
+  if (n.includes('spring'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg')
+
+  // Frontend & Mobile
+  if (n === 'reactnative' || name === 'React Native')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg')
+  if (n.includes('reactjs') || name === 'React.js' || name === 'React')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg')
+  if (n.includes('nextjs') || name === 'Next.js')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg')
+  if (n.includes('nodejs') || name === 'Node.js')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg')
+  if (n.includes('expressjs') || name === 'Express.js' || name === 'Express')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg')
+  if (n.includes('tailwindcss') || name === 'Tailwind CSS')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg')
+  if (n.includes('html'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg')
+  if (n.includes('css') && !n.includes('tailwind'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg')
+  if (n.includes('thymeleaf'))
+    return img('https://www.thymeleaf.org/images/thymeleaf.png')
+
+  // Blockchain
+  if (n.includes('solidity'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg')
+  if (n.includes('ethereum'))
+    return img('https://upload.wikimedia.org/wikipedia/commons/0/05/Ethereum_logo_2014.svg')
+  if (n.includes('hardhat'))
+    return img('https://hardhat.org/favicon.ico')
+  if (n.includes('foundry'))
+    return img('https://book.getfoundry.sh/images/foundry-logo.png')
+  if (n.includes('metamask'))
+    return img('https://upload.wikimedia.org/wikipedia/commons/3/36/MetaMask_Fox.svg')
+  if (n.includes('wagmi'))
+    return img('https://wagmi.sh/icon.svg')
+  if (n.includes('viem'))
+    return img('https://viem.sh/icon.svg')
+
+  // Tools & Platforms
+  if (n.includes('git') && !n.includes('hub'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg')
+  if (n.includes('github'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg')
+  if (n.includes('firebase'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg')
+  if (n.includes('postman'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg')
+  if (n.includes('linux'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg')
+  if (n.includes('maven'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/maven/maven-original.svg')
+  if (n.includes('intellij') || name === 'IntelliJ IDEA')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg')
+  if (n.includes('vscode') || name === 'VS Code')
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg')
+
+  // Testing
+  if (n.includes('junit'))
+    return img('https://junit.org/junit5/assets/img/junit5-logo.png')
+
+  // Security / Auth
+  if (n.includes('jwt'))
+    return img('https://jwt.io/img/pic_logo.svg')
+  if (n.includes('oauth') || n.includes('oauth2'))
+    return img('https://oauth.net/images/oauth-logo-square.png')
+
+  // Misc
+  if (n.includes('rest') || n.includes('restapi'))
+    return <span className="tech-badge-icon-text" aria-hidden="true">API</span>
+  if (n.includes('servlet'))
+    return img('https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg')
+  if (n.includes('hibernate'))
+    return img('https://www.hibernate.org/images/hibernate-logo.svg')
+  if (n.includes('bcrypt'))
+    return <span className="tech-badge-icon-text" aria-hidden="true">🔐</span>
+  if (n.includes('expo'))
+    return img('https://www.expo.dev/static/images/favicon.ico')
+  if (n.includes('gemini') || n.includes('gemini ai'))
+    return img('https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg')
+
+  return <span className="tech-badge-icon-text" aria-hidden="true">◈</span>
 }
 
-function GithubContributionGraph() {
-  const months = ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct']
-  const weeks = useMemo(() => [
-    [1, 2, 0, 3, 2, 1, 0], [2, 3, 1, 4, 2, 3, 1], [0, 1, 2, 3, 1, 0, 2], [3, 2, 4, 3, 2, 1, 3],
-    [1, 0, 2, 1, 3, 2, 0], [2, 3, 4, 2, 1, 3, 2], [3, 4, 3, 4, 2, 1, 0], [1, 2, 0, 3, 4, 2, 1],
-    [0, 1, 2, 1, 3, 2, 1], [3, 2, 4, 3, 1, 0, 2], [2, 3, 1, 2, 4, 3, 1], [1, 0, 3, 2, 1, 4, 2],
-    [4, 3, 2, 1, 0, 2, 3], [2, 1, 3, 4, 2, 1, 0], [3, 2, 1, 0, 4, 3, 2], [1, 4, 2, 3, 1, 2, 0],
-    [2, 3, 4, 1, 0, 3, 2], [0, 2, 1, 4, 3, 2, 1], [3, 1, 2, 0, 1, 4, 3], [2, 4, 3, 2, 1, 0, 1],
-    [1, 0, 2, 4, 3, 2, 3], [4, 3, 1, 2, 0, 1, 4], [2, 1, 4, 3, 2, 1, 0], [3, 2, 0, 1, 4, 3, 2],
-    [1, 3, 2, 4, 1, 0, 2], [2, 4, 3, 1, 2, 3, 1], [0, 1, 4, 3, 2, 1, 0], [3, 2, 1, 0, 4, 2, 3],
-    [4, 3, 2, 1, 3, 4, 1], [2, 1, 0, 3, 2, 1, 4], [1, 4, 3, 2, 1, 0, 2], [3, 2, 4, 1, 0, 3, 1],
-    [2, 0, 1, 4, 3, 2, 4], [4, 3, 2, 1, 0, 1, 2], [1, 2, 4, 3, 2, 0, 1], [3, 4, 1, 2, 4, 3, 0],
-    [2, 1, 3, 0, 1, 4, 2], [0, 3, 2, 4, 1, 2, 3], [4, 2, 1, 3, 0, 1, 4], [1, 0, 4, 2, 3, 1, 2],
-    [3, 2, 1, 4, 2, 0, 1], [2, 4, 3, 1, 0, 2, 4], [1, 3, 2, 0, 4, 1, 2], [4, 1, 0, 2, 3, 4, 1],
-    [2, 0, 3, 4, 1, 2, 3], [3, 4, 1, 2, 0, 3, 1], [1, 2, 4, 0, 3, 1, 2], [4, 3, 2, 1, 4, 2, 0],
-    [2, 1, 0, 4, 2, 3, 1], [3, 4, 2, 1, 0, 2, 4], [1, 2, 3, 4, 1, 0, 2], [4, 3, 2, 1, 4, 3, 2],
-  ], [])
-
-  const levelColors = ['rgba(255,255,255,0.06)', '#483963', '#6d4f9b', '#9069cb', '#c4a8f3']
-
+function GithubStreakImages() {
   return (
-    <div className="github-streak-card">
-      <div className="github-streak-topline">
-        <div className="streak-stats-row">
-          <span><strong>842</strong> contributions in 2026</span>
-          <span className="streak-dot">•</span>
-          <span>Max streak: <strong>112 days</strong></span>
-          <span className="streak-dot">•</span>
-          <span>Current streak: <strong>34 days</strong></span>
-        </div>
-        <span className="streak-status-badge">● Active Contributor</span>
-      </div>
-      <div className="github-chart-scroll">
-        <svg viewBox="0 0 740 108" className="github-chart-svg" aria-label="GitHub contribution activity chart">
-          <g transform="translate(25, 14)">
-            {months.map((month, i) => (
-              <text key={month} x={i * 58} y="-4" className="chart-month-label">{month}</text>
-            ))}
-            {weeks.map((week, wIndex) => (
-              <g key={wIndex} transform={`translate(${wIndex * 13.5}, 0)`}>
-                {week.map((level, dIndex) => (
-                  <rect
-                    key={dIndex}
-                    x={0}
-                    y={dIndex * 13.5}
-                    width={10.5}
-                    height={10.5}
-                    rx={2.5}
-                    fill={levelColors[level]}
-                    className="chart-day-rect"
-                  />
-                ))}
-              </g>
-            ))}
-          </g>
-        </svg>
-      </div>
-      <div className="github-chart-footer">
-        <span className="chart-footer-note">Simulated open-source activity graph</span>
-        <div className="chart-legend">
-          <span>Less</span>
-          {levelColors.map((color, i) => (
-            <span key={i} className="legend-box" style={{ background: color }} />
-          ))}
-          <span>More</span>
-        </div>
-      </div>
+    <div className="github-streak-only">
+      <img
+        src="https://github-readme-streak-stats.herokuapp.com/?user=soniya1610&theme=dark&hide_border=true&background=18151c&stroke=373044&ring=8d68c4&fire=c4a8f3&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=aebfb7&sideLabels=aebfb7&dates=7e738b"
+        alt="GitHub Streak Stats"
+        className="github-streak-img"
+        loading="lazy"
+      />
+      <img
+        src="https://ghchart.rshah.org/8d68c4/soniya1610"
+        alt="GitHub Contribution Chart"
+        className="github-chart-img"
+        loading="lazy"
+      />
     </div>
   )
 }
@@ -558,19 +583,29 @@ function App() {
             <div className="section-wrap">
               <SectionHeading index="03" eyebrow="TOOLS OF THE TRADE" title="A toolkit that keeps growing." />
               <p className="section-intro">No arbitrary scores. Just the technologies I’ve been learning and using to build.</p>
-              <div className="skills-grid">
+              <div className="skills-rows-container">
                 {skillGroups.map((group, index) => (
-                  <motion.article
-                    className="skill-group"
+                  <motion.div
+                    className="skill-row"
                     key={group.title}
-                    initial={{ opacity: 0, y: 14 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, margin: '-30px' }}
-                    transition={{ delay: index * 0.06, duration: 0.4 }}
+                    transition={{ delay: index * 0.07, duration: 0.4 }}
                   >
-                    <div className="skill-group-title"><span className="skill-symbol">{['⌘', '⌁', '◈', '⟡', '↗', '🧪'][index] || '◈'}</span><h3>{group.title}</h3></div>
-                    <div className="tag-row">{group.skills.map((skill) => <span className="skill-chip" key={skill}><TechIcon name={skill} /><span>{skill}</span></span>)}</div>
-                  </motion.article>
+                    <div className="skill-row-label">
+                      <span className="skill-row-num">0{index + 1}</span>
+                      <h3>{group.title}</h3>
+                    </div>
+                    <div className="skill-row-chips">
+                      {group.skills.map((skill) => (
+                        <span className="skill-chip" key={skill}>
+                          <TechIcon name={skill} />
+                          <span>{skill}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -1028,7 +1063,7 @@ function GitHubActivity() {
           <ExternalAnchor href={githubProfile.html_url} className="github-profile-link">View profile <ArrowUpRight size={14} /></ExternalAnchor>
         </div>
       )}
-      <GithubContributionGraph />
+      <GithubStreakImages />
       <div className="repo-toolbar">
         <div><span className="repo-count">{loading ? '…' : repositories.length}</span><span>repositories</span></div>
         <div className="repo-filters">
